@@ -33,11 +33,7 @@ export const drawMap = (votes) => {
 
   
   
-  //Choropleth maps - to highlight certain areas
-  const colors = {
-    "Republican": "red",
-    "Democrat": "blue"
-}
+
   us_data.features.forEach((us_e, us_i) => {
     votes.forEach((v_e, v_i) => {
       if (us_e.properties.name !== v_e.state) {
@@ -45,6 +41,7 @@ export const drawMap = (votes) => {
       }
       us_data.features[us_i].properties.votes = parseFloat(v_e.votes);
       us_data.features[us_i].properties.default_party = "Republican";
+      us_data.features[us_i].properties.abbr = v_e.abbr;
     }
    )
  })
@@ -91,7 +88,7 @@ export const drawMap = (votes) => {
           .text(`Trump: ${rep}`)
       }
     })
-    .attr('stroke', 'white')
+    .attr('stroke', '#212d36')
     .attr('stroke-width', 2)
   
   svg.selectAll('p')
@@ -99,7 +96,7 @@ export const drawMap = (votes) => {
     .enter()
     .append('text')
     .text(function (d) {
-      return d.properties.name
+      return d.properties.abbr
     })
     .attr("x", function (d) {
       return path.centroid(d)[0];

@@ -40,9 +40,17 @@ fieldset{
 }
 
 .Republican{
-  fill:red;
+  fill:#a7190b;
 }
 
 .Democrat{
-  fill:blue;
+  fill:#3973d6;
+}
+
+.hidden{
+  display: none;
+}
+
+.seen{
+  display: block;
 }
